@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Animal Exploration</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+
+		<!-- bootstrap CSS -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+		<div class="container">
+
+			<h1>Animal Exploration Center</h1>
+
+			<!-- DB select start -->
+			<h4>Step 1: select the Animal class you want to study</h3>
+			<div class="row">
+				<label for="chose-database">Animal Class</label>
+              	<select id="chose-database">
+              		<!-- first option is no option -->
+					<option value="no data">Select an animal class</option>
+
+              		<!-- database list -->
+	                <% dbs.forEach( (database) => { %>
+	                <option value="<%= database.name %>"
+	                 ><%= database.name %></option>
+	                <% }) %>
+              </select>
+			</div>
+			<!-- DB select end -->
+
+
+			<h4>Step 2: View types of animals in the selected class</h3>
+
+			<!-- Collection select start -->
+			<div class="row">
+				<div class="col-12 col-md-8">
+					<div class="row" id="coll">
+						<label for="chose-collection">Animal Type</label>
+							<select id="chose-collection">
+			              		<!-- first option is no option -->
+								<option value="">Select a type of animal</option>
+              				</select>
+					</div>
+					<div>
+						<table class="table" id="collection-table">
+						</table>
+
+
+					</div>
+				</div>
+			</div>
+			<!-- Collection select end -->
+
+
+			<h4>Step 3: Add a new animal to the selected type</h3>
+
+			<!-- Start create -->
+			<div>
+				<div class="col-12 col-md-4">
+					<h2>Add a new animal</h2>
+				</div>
+			</div>
+			<!-- End create -->
+
+
+		</div>
+
+		<!-- JQuery -->
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"
+		></script>
+		<!-- Popper.jst-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<!-- Boostrap.js -->
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- custom JS scripts -->
+		<script src="javascripts/main.js"></script>
+		<script src="javascripts/collections.js"></script>
+	</body>
+</html>
