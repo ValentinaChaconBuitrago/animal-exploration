@@ -2,6 +2,8 @@ const targetCollection = document.querySelector("#chose-collection");
 
 const renderDocuments = documents => {
   console.log("got documents", documents);
+  const target = document.getElementById("coll");
+  target.innerHTML = "";
   const table = document.getElementById("collection-table");
   table.innerHTML = "";
   //table head
@@ -42,12 +44,17 @@ const renderDocuments = documents => {
     }
     const buttonUpdate = document.createElement("button");
     buttonUpdate.textContent = "update";
+    buttonUpdate.onclick = event => {
+      console.log("entro al onclick de update");
+      event.preventDefault;
+      onUpdateDocument(doc);
+    };
     tr.append(buttonUpdate);
 
     const buttonDelete = document.createElement("button");
     buttonDelete.textContent = "delete";
     buttonDelete.onclick = event => {
-      console.log("entro al on click");
+      console.log("entro al onclick de delete");
       event.preventDefault();
       onDeleteDocument(doc["_id"]);
     };
@@ -56,7 +63,81 @@ const renderDocuments = documents => {
     tBody.append(tr);
   }
   table.append(tBody);
+
+  //create button
+  const buttonCreate = document.createElement("button");
+  buttonCreate.textContent = "add new animal";
+  buttonCreate.onclick = event => {
+    console.log("entro al onclick de create");
+    event.preventDefault;
+    onCreateDocument(documents[0]);
+  };
+  target.append(buttonCreate);
 };
+
+function onCreateDocument(doc) {
+  console.log("entro al onCreate", doc);
+  const dbName = document.querySelector("#chose-database").value;
+  const collName = targetCollection.value;
+  const target = document.getElementById("form-div");
+  target.innerHTML = "";
+
+  const type = document.createElement("h2");
+  type.textContent = "Create Animal";
+  target.append(type);
+
+  const form = document.createElement("form");
+  form.action = `./database/${dbName}/${collName}`;
+  //form.addEventListener("submit", createDocument());
+  for (const key in doc) {
+    console.log("key of create", key);
+    if (key !== "_id") {
+      const label = document.createElement("label");
+      const span = document.createElement("span");
+      span.textContent = key + ":";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.name = key;
+
+      label.append(span);
+      label.append(input);
+
+      form.append(label);
+    }
+  }
+  const button = document.createElement("button");
+  button.type = "submit";
+  button.textContent = "save";
+  target.append(form);
+  target.append(button);
+}
+
+function createDocument() {
+  const dbName = document.querySelector("#chose-database").value;
+  const collName = targetCollection.value;
+
+  fetch(`./database/${dbName}/${collName}`, {
+    method: "POST",
+    body: JSON.stringify(record),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(() => onCollectionSelection());
+}
+
+function onUpdateDocument(doc) {
+  console.log("entro al onUpdate", doc);
+  const dbName = document.querySelector("#chose-database").value;
+  const collName = targetCollection.value;
+  const target = document.getElementById("form-div");
+  target.innerHTML = "";
+
+  const type = document.createElement("h2");
+  type.textContent = "Update Animal";
+  target.append(type);
+
+  const form = document.createElement("form");
+}
 
 function onDeleteDocument(id) {
   const dbName = document.querySelector("#chose-database").value;
@@ -64,13 +145,16 @@ function onDeleteDocument(id) {
   console.log("Vamos a eliminar con id: ", id);
   fetch(`./database/${dbName}/${collName}/${id}`, {
     method: "DELETE"
-  })
-    .then(()=> onCollectionSelection());
+  }).then(() => onCollectionSelection());
 }
 
 function onCollectionSelection() {
   const dbName = document.querySelector("#chose-database").value;
   const collName = targetCollection.value;
+
+  const target = document.getElementById("form-div");
+  target.innerHTML = "";
+
   console.log("entre a onCollectionSelection!!!!!");
   fetch(`./database/${dbName}/${collName}`)
     .then(res => res.json())

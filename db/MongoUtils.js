@@ -3,11 +3,9 @@ const ObjectId = require("mongodb").ObjectID;
 
 function MongoUtils() {
   const mu = {};
-
-  mu.connect = () => {
-    const uri =
-      "mongodb+srv://val:val@cluster0-wnneh.azure.mongodb.net/test?retryWrites=true&w=majority";
-
+  let uri ="";
+  mu.connect = (puri) => {
+    uri =  puri;
     const client = new MongoClient(
       uri,
       { useNewUrlParser: true },
@@ -76,10 +74,10 @@ function MongoUtils() {
       });
   };
 
-  mu.updateCollection = (client, dbName, collectionName, data, update) =>{
+  mu.updateCollection = (client, dbName, collectionName, id, update) =>{
     const collectionDB = client.db(dbName).collection(collectionName);
     return collectionDB
-      .updateOne(data, update)
+      .updateOne({_id:ObjectId(id)}, update)
       .finally(() => {
         console.log("closing client");
         client.close();
