@@ -137,8 +137,8 @@ function createDocument() {
       }
     })
       .then(res => res.json())
-      .then(result => {
-        console.log("result",result);
+      .then(doc => {
+        console.log("result",doc);
         onCollectionSelection();
       })
       .catch(() => {
@@ -147,7 +147,6 @@ function createDocument() {
         div.textContent = "Error downloading data";
         document.getElementById("coll").append(div);
       });
-      //.then(result=> onCollectionSelection());
   };
 }
 

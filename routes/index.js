@@ -55,7 +55,7 @@ router.post("/database/:name/:collection" , (req,res) => {
   const collectionName = req.params.collection;
   mu.connect()
     .then(client => mu.insertToCollection(client,dbName,collectionName,req.body))
-    .then(res.redirect("/"))
+    .then( doc => { res.send(doc); })
     .catch(err => console.log(err));
 });
 
