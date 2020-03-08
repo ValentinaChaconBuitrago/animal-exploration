@@ -88,7 +88,7 @@ function onCreateDocument(doc) {
 
   const form = document.createElement("form");
   form.action = `./database/${dbName}/${collName}`;
-  //form.addEventListener("submit", createDocument());
+  //form.addEventListener("submit", createDocument);
   for (const key in doc) {
     console.log("key of create", key);
     if (key !== "_id") {

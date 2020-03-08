@@ -15,6 +15,7 @@ router.get("/savedb" , (req,res) => {
   mu.connect(param)
     .then(mu.getDBS)
     .then(dataBases => res.render("index", { dbs: dataBases.databases}))
+    .then(res.redirect("/"))
     .catch(err => console.log(err));
 });
 
