@@ -5,6 +5,7 @@ const mu = require("../db/MongoUtils.js");
 
 /* GET home page. */
 router.get("/", function(req, res) {
+  console.log("llego a la main page");
   res.render("input",{});
   //en dbs entra la lista de bases de datos que tiene mi cliente
 });
