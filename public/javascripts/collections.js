@@ -81,7 +81,7 @@ function onCreateDocument(doc) {
   target.innerHTML = "";
 
   const type = document.createElement("h2");
-  type.textContent = "Create Animal";
+  type.textContent = "Create Document";
   target.append(type);
 
   const form = document.createElement("form");
@@ -148,12 +148,12 @@ function createDocument() {
 }
 
 function onUpdateDocument(doc) {
-  console.log("entro al onCreate", doc);
+  console.log("entro al onUpdate", doc);
   const target = document.getElementById("form-div");
   target.innerHTML = "";
 
   const type = document.createElement("h2");
-  type.textContent = "Create Animal";
+  type.textContent = "Update Document";
   target.append(type);
 
   const form = document.createElement("form");
@@ -165,6 +165,7 @@ function onUpdateDocument(doc) {
       const span = document.createElement("span");
       span.textContent = key;
       const input = document.createElement("input");
+      console.log("key value: ", doc.key);
       input.placeholder = doc.key;
       input.type = "text";
       input.name = key;
