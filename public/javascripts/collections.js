@@ -137,10 +137,10 @@ function createDocument() {
       }
     })
       .then(res => res.json())
-      /*.then(result => {
-        console.log(result);
-      })*/
-      .then(() => onCollectionSelection());
+      .then(result => {
+        console.log("result",result);
+      });
+      //.then(result=> onCollectionSelection());
   };
 }
 
