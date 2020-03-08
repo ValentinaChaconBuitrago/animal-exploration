@@ -62,6 +62,24 @@ router.post("/database/:name/:collection", (req, res) => {
     .catch(err => console.log(err));
 });
 
+/* UPDATE document in a collection */
+router.put("/database/:name/:collection/:id", (req, res) => {
+  console.log("voy a actualizar el documento");
+  const dbName = req.params.name;
+  const collectionName = req.params.collection;
+  const id = req.params.id;
+  mu.connect()
+    .then(client =>
+      mu.updateCollection(client, dbName, collectionName, id, {
+        $set: req.body
+      })
+    )
+    .then(doc => {
+      res.send(doc);
+    })
+    .catch(err => console.log(err));
+});
+
 /* DELETE documents in a collection */
 router.delete("/database/:name/:collection/:id", (req, res) => {
   console.log("voy a borrar el documento");
@@ -74,20 +92,6 @@ router.delete("/database/:name/:collection/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 
-/* UPDATE documents in a collection */
-router.put("/database/:name/:collection/:id", (req, res) => {
-  console.log("voy a actualizar el documento");
-  const dbName = req.params.name;
-  const collectionName = req.params.collection;
-  const id = req.params.id;
-  mu.connect()
-    .then(client =>
-      mu.updateCollection(client, dbName, collectionName, id, {
-        $set: req.body
-      })
-    )
-    .then(res.redirect("/"))
-    .catch(err => console.log(err));
-});
+
 
 module.exports = router;

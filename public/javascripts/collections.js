@@ -103,12 +103,49 @@ function onCreateDocument(doc) {
       form.append(label);
     }
   }
-  form.addEventListener("submit", createDocument());
+  form.addEventListener("submit", updateDocument(doc));
   const button = document.createElement("button");
   button.type = "submit";
-  button.textContent = "save";
+  button.textContent = "create";
   form.append(button);
   target.append(form);
+}
+function updateDocument(doc){
+  console.log("Se va a actualizar un documento");
+  const dbName = document.querySelector("#chose-database").value;
+  const collName = targetCollection.value;
+  const id=doc["_id"];
+
+  return event => {
+    event.preventDefault();
+    let doc = {};
+    let inputs = document.querySelectorAll(
+      "#form-div form input"
+    );
+    for (const data of inputs) {
+      console.log("input value: " , data.value);
+      doc[data.labels[0].textContent] = data.value;
+    }
+    fetch(`./database/${dbName}/${collName}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(doc),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(doc => {
+        console.log("result",doc);
+        onCollectionSelection();
+      })
+      .catch(() => {
+        const div = document.createElement("div");
+        div.className = "alert alert-danger";
+        div.textContent = "Error downloading data";
+        document.getElementById("coll").append(div);
+      });
+  };
+
 }
 
 function createDocument() {
@@ -165,8 +202,6 @@ function onUpdateDocument(doc) {
       const span = document.createElement("span");
       span.textContent = key;
       const input = document.createElement("input");
-      console.log("key value: ", doc.key);
-      input.placeholder = doc.key;
       input.type = "text";
       input.name = key;
       input.id = key;
@@ -180,7 +215,7 @@ function onUpdateDocument(doc) {
   form.addEventListener("submit", createDocument());
   const button = document.createElement("button");
   button.type = "submit";
-  button.textContent = "save";
+  button.textContent = "update";
   form.append(button);
   target.append(form);
 }
