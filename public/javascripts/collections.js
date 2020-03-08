@@ -137,11 +137,12 @@ function createDocument() {
       }
     })
       .then(res => res.json())
-      /*.then(result => {
+      .then(result => {
+        renderDocuments(result);
         console.log(result);
-      })*/
-      .then(renderDocuments);
-      /*.catch(() => {
+      });
+      /*.then(renderDocuments)
+      .catch(() => {
         console.log("entro al catch");
         const div = document.createElement("div");
         div.className = "alert alert-danger";
