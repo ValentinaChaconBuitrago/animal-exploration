@@ -138,7 +138,8 @@ function createDocument() {
       }
     })
       .then(res => res.json())
-      .then(() => {
+      .then(result => {
+        console.log(result);
         renderDocuments();
       });
   };
