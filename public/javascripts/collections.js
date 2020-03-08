@@ -81,6 +81,7 @@ function updateDocument(doc){
   const dbName = document.querySelector("#chose-database").value;
   const collName = targetCollection.value;
   const id=doc["_id"];
+  console.log("id del documento", id);
 
   return event => {
     event.preventDefault();
@@ -94,10 +95,10 @@ function updateDocument(doc){
     }
     fetch(`./database/${dbName}/${collName}/${id}`, {
       method: "PUT",
-      body: JSON.stringify(doc),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify(doc)
     })
       .then(res => res.json())
       .then(doc => {
@@ -131,10 +132,10 @@ function createDocument() {
     }
     fetch(`./database/${dbName}/${collName}`, {
       method: "POST",
-      body: JSON.stringify(doc),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify(doc)
     })
       .then(res => res.json())
       .then(doc => {
@@ -178,7 +179,7 @@ function onCreateDocument(doc) {
       form.append(label);
     }
   }
-  form.addEventListener("submit", updateDocument(doc));
+  form.addEventListener("submit", createDocument());
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "create";

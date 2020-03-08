@@ -70,7 +70,7 @@ router.put("/database/:name/:collection/:id", (req, res) => {
   const id = req.params.id;
   mu.connect()
     .then(client =>
-      mu.updateCollection(client, dbName, collectionName, id, {
+      mu.updateDocument(client, dbName, collectionName, id, {
         $set: req.body
       })
     )
