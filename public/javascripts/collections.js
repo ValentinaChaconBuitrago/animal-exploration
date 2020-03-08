@@ -75,41 +75,7 @@ const renderDocuments = documents => {
   target.append(buttonCreate);
 };
 
-function onCreateDocument(doc) {
-  console.log("entro al onCreate", doc);
-  const target = document.getElementById("form-div");
-  target.innerHTML = "";
 
-  const type = document.createElement("h2");
-  type.textContent = "Create Document";
-  target.append(type);
-
-  const form = document.createElement("form");
-  form.innerHTML ="";
-  for (const key in doc) {
-    console.log("key of create", key);
-    if (key !== "_id") {
-      const label = document.createElement("label");
-      const span = document.createElement("span");
-      span.textContent = key;
-      const input = document.createElement("input");
-      input.type = "text";
-      input.name = key;
-      input.id = key;
-
-      label.append(span);
-      label.append(input);
-
-      form.append(label);
-    }
-  }
-  form.addEventListener("submit", updateDocument(doc));
-  const button = document.createElement("button");
-  button.type = "submit";
-  button.textContent = "create";
-  form.append(button);
-  target.append(form);
-}
 function updateDocument(doc){
   console.log("Se va a actualizar un documento");
   const dbName = document.querySelector("#chose-database").value;
@@ -184,6 +150,42 @@ function createDocument() {
   };
 }
 
+function onCreateDocument(doc) {
+  console.log("entro al onCreate", doc);
+  const target = document.getElementById("form-div");
+  target.innerHTML = "";
+
+  const type = document.createElement("h2");
+  type.textContent = "Create Document";
+  target.append(type);
+
+  const form = document.createElement("form");
+  form.innerHTML ="";
+  for (const key in doc) {
+    console.log("key of create", key);
+    if (key !== "_id") {
+      const label = document.createElement("label");
+      const span = document.createElement("span");
+      span.textContent = key;
+      const input = document.createElement("input");
+      input.type = "text";
+      input.name = key;
+      input.id = key;
+
+      label.append(span);
+      label.append(input);
+
+      form.append(label);
+    }
+  }
+  form.addEventListener("submit", updateDocument(doc));
+  const button = document.createElement("button");
+  button.type = "submit";
+  button.textContent = "create";
+  form.append(button);
+  target.append(form);
+}
+
 function onUpdateDocument(doc) {
   console.log("entro al onUpdate", doc);
   const target = document.getElementById("form-div");
@@ -212,7 +214,7 @@ function onUpdateDocument(doc) {
       form.append(label);
     }
   }
-  form.addEventListener("submit", createDocument());
+  form.addEventListener("submit", updateDocument());
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "update";
