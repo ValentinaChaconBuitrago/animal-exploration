@@ -137,18 +137,10 @@ function createDocument() {
       }
     })
       .then(res => res.json())
-      .then(result => {
-        renderDocuments(result);
+      /*.then(result => {
         console.log(result);
-      });
-      /*.then(renderDocuments)
-      .catch(() => {
-        console.log("entro al catch");
-        const div = document.createElement("div");
-        div.className = "alert alert-danger";
-        div.textContent = "Error downloading data";
-        document.getElementById("coll").append(div);
-      });*/
+      })*/
+      .then(() => onCollectionSelection());
   };
 }
 
