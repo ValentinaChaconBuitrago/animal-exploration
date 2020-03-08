@@ -140,13 +140,14 @@ function createDocument() {
       /*.then(result => {
         console.log(result);
       })*/
-      .then(renderDocuments)
-      .catch(() => {
+      .then(renderDocuments);
+      /*.catch(() => {
+        console.log("entro al catch");
         const div = document.createElement("div");
         div.className = "alert alert-danger";
         div.textContent = "Error downloading data";
         document.getElementById("coll").append(div);
-      });
+      });*/
   };
 }
 
