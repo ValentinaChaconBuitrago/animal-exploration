@@ -46,4 +46,4 @@ After this, the application will be available at http://localhost:3000/
 [Database Exploration](https://animal-exploration.herokuapp.com/)
 
 ## License
-[MIT License](https://github.com/ValentinaChaconBuitrago/database-explorations/blob/master/LICENSE)
+[MIT License](https://github.com/ValentinaChaconBuitrago/database-exploration/blob/master/LICENSE)
