@@ -125,9 +125,9 @@ function createDocument() {
     let inputs = document.querySelectorAll(
       "#form-div form input"
     );
-    for (const input of inputs) {
-      console.log("input value: " , input.value);
-      doc[input.labels[0].textContent] = input.value;
+    for (const data of inputs) {
+      console.log("input value: " , data.value);
+      doc[data.labels[0].textContent] = data.value;
     }
     fetch(`./database/${dbName}/${collName}`, {
       method: "POST",

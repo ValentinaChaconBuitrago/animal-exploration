@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Animal Exploration</title>
+		<title>Database Exploration</title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 
 		<!-- bootstrap CSS -->
@@ -15,15 +15,15 @@
 	<body>
 		<div class="container">
 
-			<h1>Animal Exploration Center</h1>
+			<h1>Database Exploration Tool</h1>
 
 			<!-- DB select start -->
-			<h4>Step 1: select the Animal class you want to study</h3>
+			<h4>Step 1: select one of the DBs available</h3>
 			<div class="row">
-				<label for="chose-database">Animal Class</label>
+				<label for="chose-database">DataBase</label>
               	<select id="chose-database">
               		<!-- first option is no option -->
-					<option value="no data">Select an animal class</option>
+					<option value="no data">Select a DB</option>
 
               		<!-- database list -->
 	                <% dbs.forEach( (database) => { %>
@@ -41,10 +41,10 @@
 			<div class="row">
 				<div class="col-12 col-md-8">
 					<div class="row" >
-						<label for="chose-collection">Animal Type</label>
+						<label for="chose-collection">Collection in DB</label>
 							<select id="chose-collection">
 			              		<!-- first option is no option -->
-								<option value="">Select a type of animal</option>
+								<option value="">Select a collection</option>
               				</select>
 					</div>
 				</div>
@@ -62,22 +62,7 @@
 				</div>
 
 			</div>
-
-
-
 			<!-- Collection select end -->
-
-
-			<h4>Step 3: Add a new animal to the selected type</h3>
-
-			<!-- Start create -->
-			<div>
-				<div class="col-12 col-md-4">
-					<h2>Add a new animal</h2>
-				</div>
-			</div>
-			<!-- End create -->
-
 
 		</div>
 
