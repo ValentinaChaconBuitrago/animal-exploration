@@ -13,7 +13,8 @@ router.get("/", function(req, res) {
 /* GET collections of a certain database */
 router.get("/savedb" , (req,res) => {
   const param = req.query.linkConnection;
-  mu.connect(param)
+  mu.setUri(param);
+  mu.connect()
     .then(mu.getDBS)
     .then(dataBases => res.render("index", { dbs: dataBases.databases}))
     .catch(err => console.log(err));

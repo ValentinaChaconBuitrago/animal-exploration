@@ -4,8 +4,10 @@ const ObjectId = require("mongodb").ObjectID;
 function MongoUtils() {
   const mu = {};
   let uri ="";
-  mu.connect = (puri) => {
-    uri =  puri;
+  mu.setUri = (puri) => {
+    uri = puri;
+  } ;
+  mu.connect = () => {
     const client = new MongoClient(
       uri,
       { useNewUrlParser: true },
