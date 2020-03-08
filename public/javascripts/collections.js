@@ -139,6 +139,13 @@ function createDocument() {
       .then(res => res.json())
       .then(result => {
         console.log("result",result);
+        onCollectionSelection();
+      })
+      .catch(() => {
+        const div = document.createElement("div");
+        div.className = "alert alert-danger";
+        div.textContent = "Error downloading data";
+        document.getElementById("coll").append(div);
       });
       //.then(result=> onCollectionSelection());
   };
