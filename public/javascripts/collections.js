@@ -66,7 +66,7 @@ const renderDocuments = documents => {
 
   //create button
   const buttonCreate = document.createElement("button");
-  buttonCreate.textContent = "add new animal";
+  buttonCreate.textContent = "add new document";
   buttonCreate.onclick = event => {
     console.log("entro al onclick de create");
     event.preventDefault;
@@ -77,8 +77,6 @@ const renderDocuments = documents => {
 
 function onCreateDocument(doc) {
   console.log("entro al onCreate", doc);
-  const dbName = document.querySelector("#chose-database").value;
-  const collName = targetCollection.value;
   const target = document.getElementById("form-div");
   target.innerHTML = "";
 
@@ -88,7 +86,6 @@ function onCreateDocument(doc) {
 
   const form = document.createElement("form");
   form.innerHTML ="";
-  //form.action = `./database/${dbName}/${collName}`;
   for (const key in doc) {
     console.log("key of create", key);
     if (key !== "_id") {
@@ -151,17 +148,40 @@ function createDocument() {
 }
 
 function onUpdateDocument(doc) {
-  console.log("entro al onUpdate", doc);
-  const dbName = document.querySelector("#chose-database").value;
-  const collName = targetCollection.value;
+  console.log("entro al onCreate", doc);
   const target = document.getElementById("form-div");
   target.innerHTML = "";
 
   const type = document.createElement("h2");
-  type.textContent = "Update Animal";
+  type.textContent = "Create Animal";
   target.append(type);
 
   const form = document.createElement("form");
+  form.innerHTML ="";
+  for (const key in doc) {
+    console.log("key of create", key);
+    if (key !== "_id") {
+      const label = document.createElement("label");
+      const span = document.createElement("span");
+      span.textContent = key;
+      const input = document.createElement("input");
+      input.placeholder = doc.key;
+      input.type = "text";
+      input.name = key;
+      input.id = key;
+
+      label.append(span);
+      label.append(input);
+
+      form.append(label);
+    }
+  }
+  form.addEventListener("submit", createDocument());
+  const button = document.createElement("button");
+  button.type = "submit";
+  button.textContent = "save";
+  form.append(button);
+  target.append(form);
 }
 
 function onDeleteDocument(id) {

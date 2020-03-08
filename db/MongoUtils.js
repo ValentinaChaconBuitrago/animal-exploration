@@ -76,7 +76,7 @@ function MongoUtils() {
       });
   };
 
-  mu.updateCollection = (client, dbName, collectionName, id, update) =>{
+  mu.updateDocument = (client, dbName, collectionName, id, update) =>{
     const collectionDB = client.db(dbName).collection(collectionName);
     return collectionDB
       .updateOne({_id:ObjectId(id)}, update)
