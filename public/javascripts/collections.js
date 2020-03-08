@@ -88,7 +88,6 @@ function onCreateDocument(doc) {
 
   const form = document.createElement("form");
   //form.action = `./database/${dbName}/${collName}`;
-  form.addEventListener("submit", createDocument());
   for (const key in doc) {
     console.log("key of create", key);
     if (key !== "_id") {
@@ -98,6 +97,7 @@ function onCreateDocument(doc) {
       const input = document.createElement("input");
       input.type = "text";
       input.name = key;
+      input.id = key;
 
       label.append(span);
       label.append(input);
@@ -105,11 +105,13 @@ function onCreateDocument(doc) {
       form.append(label);
     }
   }
+  form.addEventListener("submit", createDocument());
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "save";
+  form.append(button);
   target.append(form);
-  target.append(button);
+  //target.append(button);
 }
 
 function createDocument() {
