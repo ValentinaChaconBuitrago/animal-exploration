@@ -87,8 +87,8 @@ function onCreateDocument(doc) {
   target.append(type);
 
   const form = document.createElement("form");
-  form.action = `./database/${dbName}/${collName}`;
-  //form.addEventListener("submit", createDocument);
+  //form.action = `./database/${dbName}/${collName}`;
+  form.addEventListener("submit", createDocument);
   for (const key in doc) {
     console.log("key of create", key);
     if (key !== "_id") {
@@ -116,13 +116,27 @@ function createDocument() {
   const dbName = document.querySelector("#chose-database").value;
   const collName = targetCollection.value;
 
-  fetch(`./database/${dbName}/${collName}`, {
-    method: "POST",
-    body: JSON.stringify(record),
-    headers: {
-      "Content-Type": "application/json"
+  return event => {
+    event.preventDefault();
+    let doc = {};
+    let inputs = document.querySelectorAll(
+      "#form-div form input"
+    );
+    for (const input of inputs) {
+      doc[input.labels[0].textContent] = input.value;
     }
-  }).then(() => onCollectionSelection());
+    fetch(`./database/${dbName}/${collName}`, {
+      method: "POST",
+      body: JSON.stringify(doc),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(() => {
+        renderDocuments();
+      });
+  };
 }
 
 function onUpdateDocument(doc) {
