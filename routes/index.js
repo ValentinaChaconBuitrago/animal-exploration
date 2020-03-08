@@ -23,7 +23,8 @@ router.get("/savedb" , (req,res) => {
 router.get("/database/:name/" , (req,res) => {
   console.log("llege a las collections");
   const dbName = req.params.name;
-  mu.connect()
+  const param = req.query.linkConnection;
+  mu.connect(param)
     .then(client => mu.getCollections(client,dbName))
     .then(collection =>{
       console.log("collection", collection);
