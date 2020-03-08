@@ -109,8 +109,6 @@ function onCreateDocument(doc) {
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "save";
-  const label = document.createElement("label");
-  form.append(label);
   form.append(button);
   target.append(form);
 }
@@ -140,7 +138,13 @@ function createDocument() {
       .then(res => res.json())
       .then(result => {
         console.log(result);
-        renderDocuments();
+      })
+      .then(renderDocuments)
+      .catch(() => {
+        const div = document.createElement("div");
+        div.className = "alert alert-danger";
+        div.textContent = "Error downloading data";
+        document.getElementById("coll").append(div);
       });
   };
 }
