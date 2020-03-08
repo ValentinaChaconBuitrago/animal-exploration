@@ -137,9 +137,9 @@ function createDocument() {
       }
     })
       .then(res => res.json())
-      .then(result => {
+      /*.then(result => {
         console.log(result);
-      })
+      })*/
       .then(renderDocuments)
       .catch(() => {
         const div = document.createElement("div");
