@@ -49,7 +49,7 @@ router.get("/database/:name/:collection/" , (req,res) => {
 });
 
 /* POST documents in a colection */
-router.get("/database/:name/:collection" , (req,res) => {
+router.post("/database/:name/:collection" , (req,res) => {
   console.log("params",req.query);
   const dbName = req.params.name;
   const collectionName = req.params.collection;

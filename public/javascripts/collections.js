@@ -109,9 +109,10 @@ function onCreateDocument(doc) {
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "save";
+  const label = document.createElement("label");
+  form.append(label);
   form.append(button);
   target.append(form);
-  //target.append(button);
 }
 
 function createDocument() {
