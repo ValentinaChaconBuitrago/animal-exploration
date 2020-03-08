@@ -87,13 +87,14 @@ function onCreateDocument(doc) {
   target.append(type);
 
   const form = document.createElement("form");
+  form.innerHTML ="";
   //form.action = `./database/${dbName}/${collName}`;
   for (const key in doc) {
     console.log("key of create", key);
     if (key !== "_id") {
       const label = document.createElement("label");
       const span = document.createElement("span");
-      span.textContent = key + ":";
+      span.textContent = key;
       const input = document.createElement("input");
       input.type = "text";
       input.name = key;
