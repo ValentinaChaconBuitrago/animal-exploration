@@ -214,7 +214,7 @@ function onUpdateDocument(doc) {
       form.append(label);
     }
   }
-  form.addEventListener("submit", updateDocument());
+  form.addEventListener("submit", updateDocument(doc));
   const button = document.createElement("button");
   button.type = "submit";
   button.textContent = "update";
