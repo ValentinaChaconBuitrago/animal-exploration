@@ -113,6 +113,7 @@ function onCreateDocument(doc) {
 }
 
 function createDocument() {
+  console.log("Se va a crear un documento");
   const dbName = document.querySelector("#chose-database").value;
   const collName = targetCollection.value;
 
@@ -123,6 +124,7 @@ function createDocument() {
       "#form-div form input"
     );
     for (const input of inputs) {
+      console.log("input value: " , input.value);
       doc[input.labels[0].textContent] = input.value;
     }
     fetch(`./database/${dbName}/${collName}`, {
